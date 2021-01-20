@@ -25,15 +25,18 @@ def get_file_name(file):
     try:
         assert os.path.isfile(file)
     except AssertionError:    
-        print ('Error: %s file does not exist.' % file)
+        print ('Error: %s does not exist.' % file)
         sys.exit(1)
     else:
-        print('File %s selected.' % file)
+        print('%s selected.' % file)
     file_name = file
     return file_name
 
-def welcome_banner():
-    """ Prints welcome banner upon program start """
+
+
+
+def welcome_and_instruct():
+    """ Prints welcome and instructions upon program start """
     for x in range(5):
         print('\r\n')
     figlet = pyfiglet.figlet_format('Tweet Annotation Tool', font='slant')
@@ -41,9 +44,15 @@ def welcome_banner():
     print('by Kris Bolton')
     print('v0.1.0-alpha')
     print('\r\n')
+    print('INFORMATION')
+    print('A new CSV file will be created with three columns: tweet ID, tweet and sentiment annotation.')
+    print('Sentiment annotations are: negative (1), neutral (2) or positive (3).')
+    print('Input the corresponding number to annotate the sentiment and press enter.')
+    print('Entries are appended to the new CSV file.')
+    print('\r\n')
 
 def main():
-    welcome_banner()
+    welcome_and_instruct()
     get_file_name()
 
 if __name__ == '__main__':
