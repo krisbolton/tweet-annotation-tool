@@ -1,5 +1,5 @@
 """ Tweet Annotation Tool 
-	Version: 0.1.0-alpha
+	Version: 0.2.0-alpha
     Author: Kris Bolton
 	GitHub: github.com/krisbolton
 	Description: CLI tool to annotate tweets with sentiment to create sentiment analysis datasets.
@@ -12,6 +12,7 @@ import sys
 import os.path
 import click
 import pyfiglet
+import pandas as pd
 
 @click.command()
 @click.option('--file', prompt='Enter the csv file to annotate', help='The name of the CSV file to read.')
@@ -29,11 +30,28 @@ def get_file_name(file):
         sys.exit(1)
     else:
         print('%s selected.' % file)
-    file_name = file
-    return file_name
+        file_name = file
+        annotate(file_name)
 
+def annotate(file_name):
+    """ Read tweet id and tweet column from csv file """
+    col_list = ['id', 'tweet']
+    input_csv = pd.read_csv(file_name, usecols=col_list)
+    # create pandas dataframe from those two cols
+    input_csv['sentiment'] = ""
+    # add sentiment col
+    for i, row in input_csv.iterrows():
+        # iterate over rows, asking for sentiment for each row
+        print(row[1])
+        sentiment = input('Enter sentiment: ')
+        sentiment = int(sentiment)
+        input_csv.at[i, 'sentiment'] = sentiment
 
+# TODO add save func
 
+#def save_dataframe(dataframe):
+#    """ Save dataframe to CSV """
+#    dataframe.to_csv('annotated_dataset', index=False)
 
 def welcome_and_instruct():
     """ Prints welcome and instructions upon program start """
@@ -42,7 +60,7 @@ def welcome_and_instruct():
     figlet = pyfiglet.figlet_format('Tweet Annotation Tool', font='slant')
     print(figlet)
     print('by Kris Bolton')
-    print('v0.1.0-alpha')
+    print('v0.2.0-alpha')
     print('\r\n')
     print('INFORMATION')
     print('A new CSV file will be created with three columns: tweet ID, tweet and sentiment annotation.')
