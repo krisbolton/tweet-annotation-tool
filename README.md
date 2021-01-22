@@ -9,9 +9,9 @@ Run the requirements.txt file
 
 Requirements list:
 
-click
-pyfiglet
-pandas
+* click
+* pyfiglet
+* pandas
 
 ## Usage Instructions
 
@@ -27,6 +27,6 @@ You can also run the program without flags:
 
 Once a file has been provided TAT will display the tweets to you and ask for the sentiment to annotate.
 
-## Furhter Details
+## Further Details
 
 TODO
