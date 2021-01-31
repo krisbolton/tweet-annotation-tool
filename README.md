@@ -1,6 +1,8 @@
 # Tweet Annotation Tool
 A simple CLI tool to annotate tweets with sentiment to create twitter-based sentiment analysis datasets.
 
+![](tat-terminal-screenshot.png)
+
 Not currently complete. Check back soon.
 
 ## Installation
